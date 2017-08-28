@@ -11,11 +11,11 @@ firebase login
   512  cd functions/
   513  ls -la
   514  npm i express --save
-  
+
 npm i handlebars consolidate -i
 
 > Deploy:
-Go to root then, 
+Go to root then,
 firebase deploy
 */
 
