@@ -41,7 +41,7 @@ app.post('/subscribe', (request, response)=>{
 
     mc.lists.subscribe({id:mailchimp_listid ,email:{email:request.body.email}},function(data){
       response.setHeader('Content-Type', 'application/json');
-      response.send(JSON.stringify({ "message": "check your email and confirm your subscription" }));
+      response.send(JSON.stringify({ "message": "Please check your email and confirm your subscription!" }));
     },function function_name (error) {
       console.log(error)
 
