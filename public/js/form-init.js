@@ -44,11 +44,14 @@
       closeEl : '.icon-close',
       onBeforeOpen : function() {
         // don't allow to scroll
+        trackballGlobal.enabled = false;
+        $(".marshall-social-column").hide();
+         $("#marshall-form").find('label').html("");
         document.body.className += " newsletter-modal-oepn";
         noScroll();
       },
       onAfterOpen : function() {
-        // can scroll again
+        $('#marshall-email').focus();
         canScroll();
       },
       onBeforeClose : function() {
@@ -57,6 +60,8 @@
       },
       onAfterClose : function() {
         // can scroll again
+        $(".marshall-social-column").show();
+        trackballGlobal.enabled = true;
         canScroll();
         document.querySelector('body').classList.remove('newsletter-modal-oepn');
       }

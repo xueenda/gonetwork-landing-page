@@ -141,7 +141,7 @@ function contentToggle($this){
 function scrollToDiv(e){
   var href = "#marshall-details",
       offsetTop = href === "#" ? 0 : $(href).offset().top;
-    $('html, body').stop().animate({ 
+    $('html, body').stop().animate({
         scrollTop: offsetTop,
     }, 500);
     e.preventDefault();
@@ -165,7 +165,7 @@ $(document).on("click", ".marshall-animate-btn", function(e){
 
 
 function clickToSlide($this){
-  
+
   var self    = $this,
     content   = $('#marshall-details'),
     col   = $('.marshall-col-content'),
@@ -219,7 +219,26 @@ $(document).on("click", "#marshall-close-content", function(e){
     btn.removeClass('marshall-animate-open');
     content.removeClass(hide).addClass(animation).addClass('mrs-active');
     details.removeClass(animation).addClass(hide);
-  
+
+});
+
+$(document).on("click", "#marshall-close-content", function(e){
+
+  e.preventDefault();
+
+  var self    = $(this),
+    details   = $('#marshall-details'),
+    btn       = $('.marshall-animate-btn'),
+    content   = $('#marshall-animate-area'),
+    close     = $('#marshall-close-content'),
+    hide      = content.data('hide'),
+    animation = details.data('animation');
+
+    close.hide();
+    btn.removeClass('marshall-animate-open');
+    content.removeClass(hide).addClass(animation).addClass('mrs-active');
+    details.removeClass(animation).addClass(hide);
+
 });
 
 $(document).on("click", "#marshall-close-content-slide, .marshall-col-content.mrs-default-content-off", function(e){
@@ -237,7 +256,7 @@ $(document).on("click", "#marshall-close-content-slide, .marshall-col-content.mr
     btn.removeClass('marshall-animate-open');
     details.removeClass(animation);
     col.removeClass('mrs-default-content-off');
-  
+
 });
 
 
@@ -245,45 +264,92 @@ $(document).on("click", "#marshall-close-content-slide, .marshall-col-content.mr
 /*--------------------------------------------------------------
   9. NEWSLETTER FORM INIT
 --------------------------------------------------------------*/
+function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
 
 if ( $("#marshall-form").is_exist() ) {
 
+
   var mform = $("#marshall-form");
-  mform.ajaxChimp({
-      callback: callbackFunction,
-      url: 'http://xyz.us14.list-manage.com/subscribe/post?u=3e624ea3457b50d638f1bd58b&id=bc67dbaebe'
-  });
-  function callbackFunction (resp) {
-      if (resp.result === 'success') {
-        $('#marshall-email').val('');
-        mform.addClass('mform-success');
-        if ( $('.marshall-newsletter-header').length > 0 ) {
-          $('.marshall-newsletter-header').removeClass('mform-header-animate').addClass('mfrom-header-animate-close');
-        }
-        setTimeout(function(){
-          mform.removeClass('mform-success').removeClass('mform-submitting').removeClass('mform-animate');
-          if ( $('.marshall-newsletter-header').length > 0 ) {
-            $('.marshall-newsletter-header').removeClass('mfrom-header-animate-close').addClass('mfrom-header-animate');
-          }
-          mform.find('label').html('');
-        }, 2000);
-      } else if (resp.result === 'error') {
-        mform.removeClass('mform-submitting').removeClass('mform-animate').addClass('mform-error');
-      }
-  }
-  if (!String.prototype.contains) {
-      String.prototype.contains = function (arg) {
-          return !!~this.indexOf(arg);
-      };
-  }
-  $(document).ajaxSend(function(evt, request, settings) {
-    if ( settings.url.contains('subscribe') && settings.url.contains('post') ) {
-       mform.removeClass('mform-error').addClass('mform-submitting');
-       setTimeout(function(){
-        mform.addClass('mform-animate');
-       }, 900);
+  mform.removeClass('mform-submitting').removeClass('mform-animate')
+
+  mform.submit(function(event){
+    event.preventDefault();
+    if(true){
+       mform.removeClass('mform-error');
     }
+     mform.removeClass('mform-error').addClass('mform-submitting').addClass('mform-animate');
+      setTimeout(function(){
+
+       $.ajax({
+          type: "POST",
+           url: "/subscribe",
+            data:mform.serialize(),//{email:$('#marshall-email').val('')}, // serializes the form's elements.
+           success: function(data)
+           {
+              $('#marshall-email').val('');
+              mform.addClass('mform-success');
+              if ( $('.marshall-newsletter-header').length > 0 ) {
+                $('.marshall-newsletter-header').removeClass('mform-header-animate').addClass('mfrom-header-animate-close');
+              }
+              setTimeout(function(){
+                mform.removeClass('mform-success').removeClass('mform-submitting').removeClass('mform-animate');
+                if ( $('.marshall-newsletter-header').length > 0 ) {
+                  $('.marshall-newsletter-header').removeClass('mfrom-header-animate-close').addClass('mfrom-header-animate');
+                }
+                mform.find('label').html(data.message);
+              }, 2000);
+           },
+           error:function(err){
+
+              mform.removeClass('mform-submitting').removeClass('mform-animate').addClass('mform-error');
+              mform.find('label').html(err.message);
+           }
+         });
+      }, 900);
+
   });
+
+  // mform.ajaxSubmit{url: '/subscribe', type: 'post',
+  //   success:function(){
+      // $('#marshall-email').val('');
+      //   mform.addClass('mform-success');
+      //   if ( $('.marshall-newsletter-header').length > 0 ) {
+      //     $('.marshall-newsletter-header').removeClass('mform-header-animate').addClass('mfrom-header-animate-close');
+      //   }
+      //   setTimeout(function(){
+      //     mform.removeClass('mform-success').removeClass('mform-submitting').removeClass('mform-animate');
+      //     if ( $('.marshall-newsletter-header').length > 0 ) {
+      //       $('.marshall-newsletter-header').removeClass('mfrom-header-animate-close').addClass('mfrom-header-animate');
+      //     }
+      //     mform.find('label').html('');
+      //   }, 2000);
+  //   },
+  //   error:function(){
+  //     mform.removeClass('mform-submitting').removeClass('mform-animate').addClass('mform-error');
+  //   }})
+  // function callbackFunction (resp) {
+  //     if (resp.result === 'success') {
+
+  //     } else if (resp.result === 'error') {
+
+  //     }
+  // }
+  // if (!String.prototype.contains) {
+  //     String.prototype.contains = function (arg) {
+  //         return !!~this.indexOf(arg);
+  //     };
+  // }
+  // $(document).ajaxSend(function(evt, request, settings) {
+  //   if ( settings.url.contains('subscribe') && settings.url.contains('post') ) {
+  //      mform.removeClass('mform-error').addClass('mform-submitting');
+  //      setTimeout(function(){
+  //       mform.addClass('mform-animate');
+  //      }, 900);
+  //   }
+  // });
 
 }
 
@@ -322,7 +388,7 @@ if ( $("#mrs_bg_slider").is_exist() ) {
 --------------------------------------------------------------*/
 if ( $("body.mrs-body-slider").is_exist() ) {
   $("body.mrs-body-slider").vegas({
-      transition: 'fade', 
+      transition: 'fade',
       transitionDuration: 4000,
       delay: 10000,
       animation: 'random',
@@ -343,10 +409,10 @@ if ( $("body.mrs-body-slider").is_exist() ) {
   13. CONTACT FORM AJAXIFY INIT
 --------------------------------------------------------------*/
 $( "#mrs-contactForm" ).on( "submit", function( e ) {
-  
+
   //Stop form submission & check the validation
   e.preventDefault();
-  
+
   // Variable declaration
   var error       = false,
     name          = $('#mrs_name').val(),
@@ -354,7 +420,7 @@ $( "#mrs-contactForm" ).on( "submit", function( e ) {
     mail_fail     = $('#mail_fail'),
     mail_success  = $('#mail_success'),
     submit_btn    = $('#mrs_submit_btn');
-  
+
   // Form field validation
   if(name.length <= 1){
       var error = true;
@@ -636,7 +702,7 @@ $(window).on("load resize",function(){
             }
           }
          });
-        
+
     } else{
          content.mCustomScrollbar("destroy");
     }
@@ -693,7 +759,7 @@ if ( $('#instagram_feed').is_exist() ) {
 
       var $container = $('#instagram_feed'),
       colWidth = function () {
-        var w = $(window).width(), 
+        var w = $(window).width(),
           cw = $container.width(),
           columnNum = 1,
           columnWidth = 0;
@@ -736,7 +802,7 @@ if ( $('#instagram_feed').is_exist() ) {
       };
       isotope();
       $(window).on('resize', isotope);
-      
+
     } // end of if exists
 }
 
@@ -790,7 +856,7 @@ if ( $('#instagram_slider').is_exist() ) {
             }
         }
       });
-      
+
     } // end of if exists
 }
 
