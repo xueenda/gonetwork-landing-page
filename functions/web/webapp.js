@@ -8,11 +8,11 @@ const express = require('express');
 const engines = require('consolidate');
 const mcapi = require('mailchimp-api/mailchimp');
 const mailchimp_key = functions.config().mailchimp.key;
-const mailchimp_listid= functions.config().mailchimp.listid;
+const mailchimp_listid = functions.config().mailchimp.listid;
 
 try {
     //TODO: dont commit this!
-    var  mc = new mcapi.Mailchimp(mailchimp_key);
+    var mc = new mcapi.Mailchimp(mailchimp_key);
 
 } catch (error) {
     console.log(error.message);
@@ -35,18 +35,25 @@ app.get('/', (request, response) => {
     response.render('index', { username })
 })
 
+
+app.get('/slack', (request, response) => {
+    response.redirect('https://afternoon-castle-59812.herokuapp.com/');
+})
+
+
+
 //subscribe user to our mailchimp
-app.post('/subscribe', (request, response)=>{
+app.post('/subscribe', (request, response) => {
     console.log('body: ' + JSON.stringify(request.body));
 
-    mc.lists.subscribe({id:mailchimp_listid ,email:{email:request.body.email}},function(data){
-      response.setHeader('Content-Type', 'application/json');
-      response.send(JSON.stringify({ "message": "Please check your email and confirm your subscription!" }));
-    },function function_name (error) {
-      console.log(error)
+    mc.lists.subscribe({ id: mailchimp_listid, email: { email: request.body.email } }, function (data) {
+        response.setHeader('Content-Type', 'application/json');
+        response.send(JSON.stringify({ "message": "Please check your email and confirm your subscription!" }));
+    }, function function_name(error) {
+        console.log(error)
 
-      response.statusCode = 401;
-      response.send(JSON.stringify({ "message": "error setting up subscription, please retry" }));
+        response.statusCode = 401;
+        response.send(JSON.stringify({ "message": "error setting up subscription, please retry" }));
     })
     //mc.lists.subscribe({id: req.params.id, email:{email:req.body.email}}, function(data) {
     //   req.session.success_flash = 'User subscribed successfully! Look for the confirmation email.';
@@ -60,8 +67,8 @@ app.post('/subscribe', (request, response)=>{
     //   }
     //   res.redirect('/lists/'+req.params.id);
     // });
-      // response.setHeader('Content-Type', 'application/json');
-      // response.send(JSON.stringify({ a: 1 }));
+    // response.setHeader('Content-Type', 'application/json');
+    // response.send(JSON.stringify({ a: 1 }));
 });
 
 exports.app = functions.https.onRequest(app);
