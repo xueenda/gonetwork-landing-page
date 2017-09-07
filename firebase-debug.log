@@ -1,0 +1,119 @@
+[debug] [2017-09-07T04:40:33.471Z] ----------------------------------------------------------------------
+[debug] [2017-09-07T04:40:33.474Z] Command:      /usr/local/Cellar/node/7.4.0/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-09-07T04:40:33.474Z] CLI Version:  3.9.1
+[debug] [2017-09-07T04:40:33.474Z] Platform:     darwin
+[debug] [2017-09-07T04:40:33.474Z] Node Version: v7.4.0
+[debug] [2017-09-07T04:40:33.475Z] Time:         Thu Sep 07 2017 00:40:33 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:33.475Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-09-07T04:40:33.492Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-09-07T04:40:33.492Z] > authorizing via signed-in user
+[debug] [2017-09-07T04:40:33.494Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-09-07T04:40:33.495Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/SOpuFbVQQWDaEsXnNwUOuvjSvJL-zlRoON3iQCNpCGs',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Thu Sep 07 2017 00:40:33 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:33.734Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-07T04:40:33.738Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/mobicoin-co  
+ Thu Sep 07 2017 00:40:33 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:34.278Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-07T04:40:34.279Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/mobicoin-co/tokens  
+ Thu Sep 07 2017 00:40:34 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:35.021Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'mobicoin-co'...
+[info] 
+[info] i  deploying functions, hosting
+[debug] [2017-09-07T04:40:35.875Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "consolidate": "^0.14.5",
+    "express": "^4.15.4",
+    "firebase-admin": "~4.2.1",
+    "firebase-functions": "^0.5.7",
+    "handlebars": "^4.0.10",
+    "mailchimp-api": "*"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-09-07T04:40:35.876Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/mobicoin-co?view=CONSUMER_VIEW  
+ Thu Sep 07 2017 00:40:35 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:35.877Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/mobicoin-co?view=CONSUMER_VIEW  
+ Thu Sep 07 2017 00:40:35 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:36.654Z] <<< HTTP RESPONSE 200
+[info] ✔  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-09-07T04:40:36.671Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2017-09-07T04:40:36.671Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/mobicoin-co  
+ Thu Sep 07 2017 00:40:36 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:36.672Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/mobicoin-co/apiKeys  
+ Thu Sep 07 2017 00:40:36 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:37.058Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-07T04:40:37.070Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2017-09-07T04:40:39.207Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/mobicoin-co/configs  
+ Thu Sep 07 2017 00:40:39 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:39.430Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-07T04:40:39.431Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/mobicoin-co/configs/mailchimp/variables  
+ Thu Sep 07 2017 00:40:39 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:39.650Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-07T04:40:39.651Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/mobicoin-co/configs/mailchimp/variables/listid  
+ Thu Sep 07 2017 00:40:39 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:39.651Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/mobicoin-co/configs/mailchimp/variables/id  
+ Thu Sep 07 2017 00:40:39 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:39.651Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/mobicoin-co/configs/mailchimp/variables/key  
+ Thu Sep 07 2017 00:40:39 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:40.040Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-07T04:40:40.041Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-07T04:40:40.042Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (14.98 KB) for uploading
+[debug] [2017-09-07T04:40:41.149Z] >>> HTTP REQUEST GET https://www.googleapis.com/storage/v1/b/staging.mobicoin-co.appspot.com  
+ Thu Sep 07 2017 00:40:41 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:41.377Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-07T04:40:41.379Z] >>> HTTP REQUEST POST https://www.googleapis.com/upload/storage/v1/b/staging.mobicoin-co.appspot.com/o?uploadType=media&name=firebase-functions-source ReadStream {
+  _readableState: 
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 65536,
+     buffer: BufferList { head: [Object], tail: [Object], length: 1 },
+     length: 15339,
+     pipes: null,
+     pipesCount: 0,
+     flowing: null,
+     ended: true,
+     endEmitted: false,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: true,
+     readableListening: false,
+     resumeScheduled: false,
+     defaultEncoding: 'utf8',
+     ranOut: false,
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: true,
+  domain: null,
+  _events: { end: [Function] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  path: '/var/folders/24/95c06cx140d36g2tps51ms7h0000gn/T/firebase-functions-22265J0j3qvYJ8Lz9.zip',
+  fd: 19,
+  flags: 'r',
+  mode: 438,
+  start: undefined,
+  end: undefined,
+  autoClose: true,
+  pos: undefined,
+  bytesRead: 15339 } 
+ Thu Sep 07 2017 00:40:41 GMT-0400 (EDT)
+[debug] [2017-09-07T04:40:41.986Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[info] i  hosting: preparing public directory for upload...
