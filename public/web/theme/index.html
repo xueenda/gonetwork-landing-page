@@ -42,7 +42,34 @@
   <!-- Resource style -->
 
   <script src="assets/js/modernizr.js"></script>
+  <style type="text/css">
+  .mform-submitting{
+    background-color: #EBF7FF;
+    border-color: #EBF7FF;
+  }
 
+  .mform-error{
+    background-color: #FF0067;
+    border-color: #FF0067;
+    color:white;
+  }
+  .mform-error:focus{
+    background-color: #FF0067;
+    border-color: #FF0067;
+    color:white;
+  }
+
+  .mform-success{
+    background-color: #9DFF00;
+    border-color: #9DFF00;
+    color:#b5b9bf;
+  }
+  .mform-focus{
+    background-color: #9DFF00;
+    border-color: #9DFF00;
+    color:#b5b9bf;
+  }
+  </style>
 </head>
 
 <body>
@@ -59,7 +86,7 @@
                 <img class="logo-inverse" src="assets/img/logo-light.png" alt="logo">
               </a>
           </div>
-    
+
 
 
       <div class="topbar-right">
@@ -68,15 +95,15 @@
       | Topbar 3
       |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
       !-->
-     
-      
-      
+
+
+
             <nav class="topbar topbar-expand-md">
               <div class="container">
 
-                <div class="topbar-left">                 
+                <div class="topbar-left">
                 </div>
-      
+
                 <div class="topbar-right">
                   <ul class="topbar-nav nav">
                       <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
@@ -84,22 +111,22 @@
                       <li class="nav-item"><a class="nav-link" href="#" data-scrollto="growth">Growth</a></li>
                       <li class="nav-item"><a class="nav-link" href="#" data-scrollto="roadmap">Roadmap</a></li>
                       <li class="nav-item"><a class="nav-link" href="#" data-scrollto="team">Team</a></li>
-                      
-      
-      
-      
-                   
+
+
+
+
+
                   </ul>
-      
+
                   <div class="d-inline-flex ml-30">
                     <a class="btn btn-sm btn-primary mr-4" href="page-login.html">Whitepaper</a>
                   </div>
                 </div>
-      
+
               </div>
             </nav>
-      
-      
+
+
       </div>
 
     </div>
@@ -114,9 +141,9 @@
     <canvas class="constellation"></canvas>
 
     <div class="container">
-      <div class="row h-full">
+      <div class="row">
         <div class="col-12 text-center align-self-center">
-          <h1 class="fs-50 fw-600 lh-15 hidden-sm-down">Built for <span class="text-primary" data-type="Mobile Apps, Mobile Games, Internet Games, Internet Sites, YOU"></span></h1>
+          <h1 class="fs-40 fw-600 lh-15 hidden-sm-down">Built for <span class="text-primary" data-type="Mobile Apps, Mobile Games, Internet Games, Internet Sites, YOU"></span></h1>
           <h1 class="fs-35 fw-600 lh-15 hidden-md-up">Built for<br><span class="text-primary" data-type="Mobile Apps, Mobile Games, Internet Games, Internet Sites, YOU"></span></h1>
           <br>
           <p class="fs-20 hidden-md-down"><strong>GoToken</strong> is disrupting the trillion dollar virtual content and mobile economy! Our mission is to
@@ -125,28 +152,37 @@
             blockchain. Buy, trade or exchange virtual goods - every transaction will benefit the content creator, node operators
             and GoToken stakers.
           </p>
-          <p class="fs-20 hidden-md-up"><strong>GoToken</strong> is disrupting the trillion dollar virtual content and mobile economy! Our mission is to
-            move virtual goods to the blockchain by creating the first ever decentralized virtual content platfrom.
-          </p>
+
         </div>
 
 
 
-        <div class="container text-center">
-          <h3>Subscribe For Updates</h3>
-          <p class="lead"></p>
-          <form class="form-inline form-glass justify-content-center" action="" method="post" target="_blank">
-            <div class="form-group">
-              <div class="input-group input-group-lg">
-                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                <input type="email" name="EMAIL" class="form-control" placeholder="Email Address">
-              </div>
-            </div>
-            <button class="btn btn-lg btn-primary ml-12">Subscribe</button>
-          </form>
-          <br>
-          <br>
-          <br>
+
+      </div>
+      <div class="row">
+        <div class="col-12 text-center align-self-center">
+
+              <h3>Subscribe For Updates</h3>
+
+              <form id="subscribe-form" class="form-inline form-glass justify-content-center" action="/subscribe" method="post" >
+                <div class="form-group">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input type="email" name="email" class="form-control" placeholder="Email Address">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary ml-12">Subscribe</button>
+              </form>
+
+
+
+
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-12">
+
           <div class="social social-boxed social-rounded social-inverse text-center">
             <a class="social-facebook" href="https://www.facebook.com/gotoken.co" target="_blank"><i class="fa fa-facebook"></i></a>
             <a class="social-twitter" href="https://twitter.com/gotoken_co" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -159,10 +195,9 @@
         </div>
 
 
-        <div class="col-12 align-self-end text-center pb-70">
-          <a class="scroll-down-2 scroll-down-inverse" href="#" data-scrollto="about"><span></span></a>
+
         </div>
-      </div>
+        <br />
     </div>
   </header>
   <!-- END Header -->
@@ -476,7 +511,7 @@
 
               <div class="frst-timeline-img">
                 <span>
-                            
+
                           </span>
 
               </div>
@@ -906,7 +941,7 @@
 
     <!--
       |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
-      | Team 3 - 
+      | Team 3 -
       |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
       !-->
     <section class="section bg-gray" id="team">
@@ -920,7 +955,7 @@
 
         <!--
       |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
-      | Row 1 
+      | Row 1
       |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
       !-->
         <div class="row gap-y">
@@ -1050,6 +1085,59 @@
   <script src="assets/js/thesaas.min.js"></script>
   <script src="assets/js/script.js"></script>
 
+  <script type="text/javascript">
+    var mform = $("#subscribe-form");
+    var emailInput = mform.find("input[name='email']");
+    var submitBtn = mform.find(":submit");
+    mform.submit(function(event){
+    event.preventDefault();
+    if(true){
+       submitBtn.removeClass('mform-error');
+    }
+     submitBtn.removeClass('mform-error').removeClass('btn-primary');
+     submitBtn.html("submit ...");
+    setTimeout(function(){
+        // submitBtn.addClass('mform-success');
+        // submitBtn.html("success");
+
+        //       setTimeout(function(){
+        //         submitBtn.removeClass('mform-success').removeClass('mform-submitting').removeClass('mform-animate');
+        //         submitBtn.html("subscribe");
+
+
+        //       }, 2000);
+       $.ajax({
+          type: "POST",
+           url: "/subscribe",
+            data:mform.serialize(),//{email:$('#marshall-email').val('')}, // serializes the form's elements.
+           success: function(data)
+           {
+
+              submitBtn.addClass('mform-success');
+              submitBtn.html("success");
+              setTimeout(function(){
+                submitBtn.removeClass('mform-success').addClass('btn-primary').removeClass('mform-animate');
+                submitBtn.html("subscribe");
+
+              }, 2000);
+           },
+           error:function(err){
+
+              submitBtn.addClass('mform-error');
+              submitBtn.html("retry");
+              setTimeout(function(){
+                submitBtn.removeClass('mform-error').addClass('btn-primary');
+                submitBtn.html("subscribe");
+
+              }, 2000);
+
+           }
+         });
+      }, 1000);
+
+  });
+
+  </script>
 </body>
 
 </html>
