@@ -130,6 +130,7 @@
     max-height: 350px;
     overflow: hidden;
     margin-bottom: 20px;
+    border-radius: 4px;
 }
 
 .frst-timeline-style-19 .frst-timeline-content-inner .media-section iframe {
@@ -171,7 +172,7 @@
         left: auto;
         right: 0;
     }
-   
+
 }
 
 @media only screen and (max-width:678px) {
