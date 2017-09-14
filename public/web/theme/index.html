@@ -183,8 +183,8 @@
               <form id="subscribe-form" class="form-inline form-glass justify-content-center" action="/subscribe" method="post" >
                 <div class="form-group">
                   <div class="input-group input-group-lg">
-                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                    <input type="email" name="email" class="form-control" placeholder="Email Address">
+                    <input type="email" class="form-control" placeholder="Email address" aria-describedby="basic-addon4" name="email">
+                    <span class="input-group-addon" id="basic-addon4"><i class="ti-email"></i></span>
                   </div>
                 </div>
                 <button type="submit" class="form-group btn btn-lg btn-primary ml-12">Subscribe</button>
@@ -1122,15 +1122,15 @@
               <div class="row">
 
                 <div class="col-12 col-lg-4 offset-lg-4">
-                  <form>
+                  <form id="presale_form" method="POST" >
                   <div class="form-group input-group">
-                    <input type="text" class="form-control" placeholder="Email address" aria-describedby="basic-addon4">
+                    <input type="email" class="form-control" placeholder="Email address" aria-describedby="basic-addon4" name="email">
                     <span class="input-group-addon" id="basic-addon4"><i class="ti-email"></i></span>
                   </div>
                   <div class="form-group">
 
-                    <select class="form-control " placeholder="Presale Investment">
-
+                    <select class="form-control " placeholder="Presale Investment" name="contribution">
+                      <option>Potential Contribution $</option>
                       <option>$1000</option>
                       <option>$5000</option>
                       <option>$5000+</option>
@@ -1143,12 +1143,12 @@
 
                   <div class="form-group">
                     <label class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input">
+                      <input type="checkbox" class="custom-control-input" name="read_whitepaper">
                       <span class="custom-control-indicator"></span>
                       <span class="custom-control-description">I have read the GoToken whitepaper</span>
                     </label>
                   </div>
-                   <button class="btn btn-block btn-lg btn-success">Register</button>
+                   <button class="btn btn-block btn-lg btn-primary">Register</button>
                 </form>
                 </div>
               </div>
@@ -1212,18 +1212,19 @@
            success: function(data)
            {
 
-              submitBtn.addClass('mform-success');
+              submitBtn.addClass('btn-success');
               submitBtn.html("success");
               setTimeout(function(){
-                submitBtn.removeClass('mform-success').addClass('btn-primary').removeClass('mform-animate');
+                submitBtn.removeClass('btn-success').addClass('btn-primary');
                 submitBtn.html("subscribe");
 
               }, 2000);
            },
-           error:function(err){
+           error:function($xhr){
 
+              var error =JSON.parse($xhr.responseText);
               submitBtn.addClass('mform-error');
-              submitBtn.html("retry");
+              submitBtn.html(error.message);
               setTimeout(function(){
                 submitBtn.removeClass('mform-error').addClass('btn-primary');
                 submitBtn.html("subscribe");
@@ -1235,6 +1236,64 @@
       }, 1000);
 
   });
+
+
+  //Presale
+  var presale = function(){
+    var presaleForm = $("#presale_form");
+    var emailInput = presaleForm.find("input[name='email']");
+    var submitBtn = presaleForm.find(":submit");
+    presaleForm.submit(function(event){
+      event.preventDefault();
+      if(true){
+       submitBtn.removeClass('mform-error');
+      }
+     submitBtn.removeClass('mform-error').removeClass('btn-primary');
+     submitBtn.html("submit ...");
+    setTimeout(function(){
+        // submitBtn.addClass('mform-success');
+        // submitBtn.html("success");
+
+        //       setTimeout(function(){
+        //         submitBtn.removeClass('mform-success').removeClass('mform-submitting').removeClass('mform-animate');
+        //         submitBtn.html("subscribe");
+
+
+        //       }, 2000);
+       $.ajax({
+          type: "POST",
+           url: "/presale/subscribe",
+            data:presaleForm.serialize(),//{email:$('#marshall-email').val('')}, // serializes the form's elements.
+           success: function(data)
+           {
+
+              submitBtn.addClass('btn-success');
+              submitBtn.html("success");
+              setTimeout(function(){
+                submitBtn.removeClass('btn-success').addClass('btn-primary');
+                submitBtn.html("Register");
+
+              }, 2000);
+           },
+           error:function($xhr){
+              var error =JSON.parse($xhr.responseText);
+              submitBtn.addClass('mform-error');
+              submitBtn.html(error.message);
+              setTimeout(function(){
+                submitBtn.removeClass('mform-error').addClass('btn-primary');
+                submitBtn.html("Register");
+
+              }, 2000);
+
+           }
+         });
+      }, 1000);
+
+  });
+  };
+
+  presale();
+
 
   </script>
 </body>
