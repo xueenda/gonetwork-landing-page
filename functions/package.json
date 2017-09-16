@@ -7,8 +7,8 @@
     "firebase-admin": "~4.2.1",
     "firebase-functions": "^0.5.7",
     "handlebars": "^4.0.10",
-    "mailchimp-api": "*",
-    "validator":"*"
+    "mailchimp-api": "^2.0.7",
+    "validator": "^8.2.0"
   },
   "private": true
 }
