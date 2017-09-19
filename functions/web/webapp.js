@@ -48,12 +48,12 @@ app.get('/slack', (request, response) => {
 })
 
 
-
 //subscribe user to our mailchimp
 app.post('/subscribe', (request, response) => {
-    console.log('body: ' + JSON.stringify(request.body));
+    //console.log('body: ' + JSON.stringify(request.body));
     if(validator.isEmail(request.body.email)){
       mc.lists.subscribe({ id: mailchimp_listid, email: { email: request.body.email } }, function (data) {
+        database.ref('subscribe/users').push(request.body);        
         response.setHeader('Content-Type', 'application/json');
         response.send(JSON.stringify({ "message": "Please check your email and confirm your subscription!" }));
     }, function function_name(error) {
@@ -76,8 +76,8 @@ app.post('/subscribe', (request, response) => {
 
 //subscribe user to our mailchimp presale
 app.post('/presale/subscribe', (request, response) => {
-    console.log(request.body)
-    console.log(validator.isEmail(request.body.email));
+    //console.log(request.body)
+    //console.log(validator.isEmail(request.body.email));
     if(validator.isEmail(request.body.email)){
         mc.lists.subscribe({ id: mailchimp_presale_listid, email: { email: request.body.email } }, function (data) {
             database.ref('presale/users').push(request.body);
