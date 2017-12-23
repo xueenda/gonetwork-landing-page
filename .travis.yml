@@ -3,6 +3,7 @@ node_js:
   - "node"
 script:
   echo “Deploy!!”
+  rm package-lock.json
 before_install:
   - npm install body-parser
   - npm install -g firebase-tools
