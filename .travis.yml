@@ -1,15 +1,12 @@
 language: node_js
 node_js:
   - "node"
+branches:
+  only:
+    - master
+before_script:
+  - npm install -g firebase-tools
 script:
   echo “Deploy!!”
-  rm package-lock.json
-before_install:
-  - npm install body-parser
-  - npm install -g firebase-tools
-install:
-  - npm install
-deploy:
-  provider: firebase
-  token:
-    secure: "gDVKh3PbHGuSV6ukL5aYpnhpG8wiFh+lLL3GF9sL7BEOHC05n3DECHMYd/6tvmW5L6gAiQcBuhzONLlhYcR9MLAwGC8xaF8mWoxp/O0fJGFawa9e6VTd7GKoXSZpSfL1PZher/nx8aAFkY3qmM4cG5lhemS3xdYdoxU7jwVoEMgLsuOsGt7YgAsYYNfqsmo+/kaHmNanCdf73Pn6J3c153tm2qsSXuBXxjWkvA+AXgWMqBuknzw2cfB9Lbbx0943nLw5NOD9wsJ/CZchJ9unvAIoTRmw4JHfYa66k9+CMSKgDlry5JyjZ4inteM8t2TgjaTqvmjVXiIH7YTXn2rF0d9TPtRUKoY+pJ+dconcbbUv/RI76JHfVeq+hbxwPiwrgDueGpzf8yOFyfwOGPlBvx4FWCRaxTx4mIZuuEbdVFka0GHafnbNbrhcJZMZzMbXGmpjIzqg4j3VPIE0kCTsXJ5dYgxaw955StfEFF+T4JKVrlPMrfBDUnHwMACnFVvhR88isapRHeS4/oMz/83sYtPkQRm6pXjQtfxTjdzoQIKn2CLpAe2QxTRDspJtxayLmkspyPnDCBq1w+BuHaXtvuNVCczOFj0iSnu5G+/UD7rnxS+FQoV8kZqX+/pL68UfoJO20GRADBFZM2cHBPhaO68gE+zm9zd8kkKG7lpU/wQ="
+after_success:
+  - firebase deploy --token $FIREBASE_TOKEN --non-interactive
