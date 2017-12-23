@@ -1,10 +1,17 @@
 {
   "hosting": {
+    "ignore": [
+      "firebase.json",
+      "firebase-debug.log",
+      "public/old",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "public": "public",
     "rewrites": [
       {
-        "source": "**",
-        "function": "app"
+        "function": "app",
+        "source": "**"
       }
     ]
   }

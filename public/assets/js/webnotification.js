@@ -17,10 +17,12 @@ if (!Notify.needsPermission) {
 }
 
 function onPermissionGranted() {
+  myNotification.show();
   console.log('Permission has been granted by the user');
   // myNotification();
 }
 
 function onPermissionDenied() {
+  alert('Enalbe the Permission to see web notifications');
   console.warn('Permission has been denied by the user');
 }
